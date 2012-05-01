@@ -37,7 +37,7 @@ public class Main {
 
         Family takahashi = new Family(members);
         takahashi.setAddress("千葉県松戸市");
-        takahashi.setTel("123-4567");
+        takahashi.setTel("987-6543");
         takahashi.setHouseholder(nobuyuki);
 
         System.out.println(takahashi.toString());

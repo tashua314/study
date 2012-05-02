@@ -8,10 +8,10 @@ import java.util.List;
  */
 public class Family implements Cloneable {
 
-    private String address;
-    private String tel;
-    private Person householder;
-    private List<Person> members;
+    private String address; // 住所
+    private String tel; // 電話番号
+    private Person householder; // 世帯主
+    private List<Person> members; // 構成メンバ(全員)
     private ArrayList<String> history = new ArrayList<>();
     private ArrayList<Family> historyFamily = new ArrayList<>();
 
@@ -49,13 +49,6 @@ public class Family implements Cloneable {
         builder.append(householder.getName());
         builder.append("\n    age=" + householder.getAge());
         builder.append("\n    sex=" + householder.getSex());
-
-        // 構成メンバに世帯主が含まれていた場合の処理
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getName().equals(householder.getName())) {
-                members.remove(i);
-            }
-        }
 
         for (int i = 0; i < members.size(); i++) {
             builder.append(",\n  member" + (i + 1) + "=");
@@ -95,9 +88,30 @@ public class Family implements Cloneable {
         try {
             copyFamily = (Family) super.clone();
 
+            copyFamily.address = this.address;
+            copyFamily.tel = this.tel;
+            copyFamily.householder = this.householder;
+
+            copyFamily.members = new ArrayList<>(this.members.size());
+            for (Person person : this.members) {
+            	copyFamily.members.add(person);
+            }
+
+            copyFamily.history = new ArrayList<>(this.history.size());
+            for (String his : this.history) {
+            	copyFamily.history.add(his);
+            }
+
+            copyFamily.historyFamily = new ArrayList<>(this.historyFamily.size());
+            for (Family fam : this.historyFamily) {
+            	copyFamily.historyFamily.add(fam);
+            }
+
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
+
+        System.out.println(this.toString());
 
         return copyFamily;
     }

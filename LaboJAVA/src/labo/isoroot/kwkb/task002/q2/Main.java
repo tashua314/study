@@ -1,7 +1,6 @@
 package labo.isoroot.kwkb.task002.q2;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -47,8 +46,5 @@ public class Main {
 
         ArrayList<Family> his = takahashi.getHistoryFamily();
 
-        System.out.println(takahashi.toString());
-        System.out.println(takahashi.getHistory().toString());
     }
-
 }

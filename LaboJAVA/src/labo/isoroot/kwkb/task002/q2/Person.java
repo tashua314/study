@@ -5,65 +5,64 @@ package labo.isoroot.kwkb.task002.q2;
  */
 public class Person {
 
+    /** 名前 */
     private String name;
+    /** 性別 */
     private String sex;
+    /** 年齢 */
     private String age;
 
-
     /**
-     * @return name
+     * nameを返却します。
+     *
+     * @return name 名前
      */
     public String getName() {
-
         return name;
     }
 
-
     /**
-     * @param name
-     *            セットする name
+     * nameを設定します。
+     *
+     * @param name 名前
      */
     public void setName(String name) {
-
         this.name = name;
     }
 
-
     /**
-     * @return sex
+     * sexを返却します。
+     *
+     * @return sex 性別
      */
     public String getSex() {
-
         return sex;
     }
 
-
     /**
-     * @param sex
-     *            セットする sex
+     * sexを設定します。
+     *
+     * @param sex 性別
      */
     public void setSex(String sex) {
-
         this.sex = sex;
     }
 
-
     /**
-     * @return age
+     * ageを返却します。
+     *
+     * @return age 年齢
      */
     public String getAge() {
-
         return age;
     }
 
-
     /**
-     * @param age
-     *            セットする age
+     * ageを設定します。
+     *
+     * @param age 年齢
      */
     public void setAge(int age) {
-
         this.age = String.valueOf(age);
     }
-
 }

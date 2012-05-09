@@ -19,8 +19,8 @@ public class Family implements Cloneable {
     /**
      * 家族を作成する。
      *
-     * @param housholder
-     * @param members
+     * @param housholder 世帯主
+     * @param members 構成メンバ
      */
     public Family(Person housholder, List<Person> members) {
 
@@ -155,7 +155,7 @@ public class Family implements Cloneable {
 
 
     /**
-     * @param housholder
+     * @param householder
      *            セットする householder
      */
     public void setHouseholder(Person householder) {

@@ -15,7 +15,6 @@ public class Family implements Cloneable {
     private ArrayList<String> history = new ArrayList<>();
     private ArrayList<Family> historyFamily = new ArrayList<>();
 
-
     /**
      * 家族を作成する。
      *
@@ -32,7 +31,6 @@ public class Family implements Cloneable {
         this.historyFamily.add(clone());
     }
 
-
     /**
      * Familyクラスを文字列に変換して返却する。
      */
@@ -41,14 +39,14 @@ public class Family implements Cloneable {
 
         StringBuilder builder = new StringBuilder();
 
-        builder.append("Family [\n" + "  address=");
+        builder.append("Family [" + System.lineSeparator() + "  address=");
         builder.append(address);
-        builder.append(",\n  tel=");
+        builder.append("," + System.lineSeparator() + "  tel=");
         builder.append(tel);
-        builder.append(",\n  Householder=");
+        builder.append("," + System.lineSeparator() + "  Householder=");
         builder.append(householder.getName());
-        builder.append("\n    age=" + householder.getAge());
-        builder.append("\n    sex=" + householder.getSex());
+        builder.append(System.lineSeparator() + "    age=" + householder.getAge());
+        builder.append(System.lineSeparator() + "    sex=" + householder.getSex());
 
         // 構成メンバに世帯主が含まれていた場合の処理
         for (int i = 0; i < members.size(); i++) {
@@ -58,16 +56,15 @@ public class Family implements Cloneable {
         }
 
         for (int i = 0; i < members.size(); i++) {
-            builder.append(",\n  member" + (i + 1) + "=");
+            builder.append("," + System.lineSeparator() + "  member" + (i + 1) + "=");
             builder.append(members.get(i).getName());
-            builder.append("\n    age=" + members.get(i).getAge());
-            builder.append("\n    sex=" + members.get(i).getSex());
+            builder.append(System.lineSeparator() + "    age=" + members.get(i).getAge());
+            builder.append(System.lineSeparator() + "    sex=" + members.get(i).getSex());
         }
-        builder.append("\n]");
+        builder.append(System.lineSeparator() + "]");
 
         return builder.toString();
     }
-
 
     /**
      * 家族を追加する
@@ -77,13 +74,10 @@ public class Family implements Cloneable {
     public void addMember(Person person) {
 
         this.members.add(person);
-        this.history.add("家族追加: " + person.getName() +
-                "  age=" + person.getAge() +
-                "  sex=" + person.getSex() +
-                "\n");
+        this.history.add("家族追加: " + person.getName() + "  age=" + person.getAge()
+                + "  sex=" + person.getSex() + "\n");
         this.historyFamily.add(clone());
     }
-
 
     /**
      * Familyクラスのコピーを返す
@@ -102,7 +96,6 @@ public class Family implements Cloneable {
         return copyFamily;
     }
 
-
     /**
      * @return address
      */
@@ -111,10 +104,8 @@ public class Family implements Cloneable {
         return address;
     }
 
-
     /**
-     * @param address
-     *            セットする address
+     * @param address セットする address
      */
     public void setAddress(String address) {
 
@@ -122,7 +113,6 @@ public class Family implements Cloneable {
         this.history.add("住所変更: " + this.getAddress() + "\n");
         this.historyFamily.add(clone());
     }
-
 
     /**
      * @return tel
@@ -132,10 +122,8 @@ public class Family implements Cloneable {
         return tel;
     }
 
-
     /**
-     * @param tel
-     *            セットする tel
+     * @param tel セットする tel
      */
     public void setTel(String tel) {
 
@@ -143,7 +131,6 @@ public class Family implements Cloneable {
         this.history.add("電話番号変更: " + this.getTel() + "\n");
         this.historyFamily.add(clone());
     }
-
 
     /**
      * @return householder
@@ -153,21 +140,18 @@ public class Family implements Cloneable {
         return householder;
     }
 
-
     /**
-     * @param householder
-     *            セットする householder
+     * @param householder セットする householder
      */
     public void setHouseholder(Person householder) {
 
         this.householder = householder;
-        this.history.add("世帯主変更: " + this.householder.getName() +
-                "  age=" + this.householder.getAge() +
-                "  sex=" + this.householder.getSex() +
-                "\n");
+        this.history
+                .add("世帯主変更: " + this.householder.getName() + "  age="
+                        + this.householder.getAge() + "  sex="
+                        + this.householder.getSex() + "\n");
         this.historyFamily.add(clone());
     }
-
 
     /**
      * @return members
@@ -177,7 +161,6 @@ public class Family implements Cloneable {
         return members;
     }
 
-
     /**
      * @return history
      */
@@ -185,7 +168,6 @@ public class Family implements Cloneable {
 
         return history;
     }
-
 
     /**
      * @return historyFamily

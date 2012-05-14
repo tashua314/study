@@ -65,4 +65,13 @@ public class Person {
     public void setAge(int age) {
         this.age = String.valueOf(age);
     }
+
+    /* (非 Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+
+        return "Person [name=" + name + ", sex=" + sex + ", age=" + age + "]";
+    }
 }

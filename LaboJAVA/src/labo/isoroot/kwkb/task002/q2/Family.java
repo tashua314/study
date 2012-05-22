@@ -44,22 +44,11 @@ public class Family implements Cloneable {
         builder.append("," + System.lineSeparator() + "  tel=");
         builder.append(tel);
         builder.append("," + System.lineSeparator() + "  Householder=");
-        builder.append(householder.getName());
-        builder.append(System.lineSeparator() + "    age=" + householder.getAge());
-        builder.append(System.lineSeparator() + "    sex=" + householder.getSex());
-
-        // 構成メンバに世帯主が含まれていた場合の処理
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getName().equals(householder.getName())) {
-                members.remove(i);
-            }
-        }
+        builder.append(householder.toString());
+        builder.append(System.lineSeparator());
 
         for (int i = 0; i < members.size(); i++) {
-            builder.append("," + System.lineSeparator() + "  member" + (i + 1) + "=");
-            builder.append(members.get(i).getName());
-            builder.append(System.lineSeparator() + "    age=" + members.get(i).getAge());
-            builder.append(System.lineSeparator() + "    sex=" + members.get(i).getSex());
+            builder.append(members.get(i).toString() + System.lineSeparator());
         }
         builder.append(System.lineSeparator() + "]");
 

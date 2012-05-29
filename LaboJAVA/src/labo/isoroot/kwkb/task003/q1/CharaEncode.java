@@ -8,58 +8,132 @@ package labo.isoroot.kwkb.task003.q1;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
-import javax.sound.sampled.AudioFormat.Encoding;
-
 /**
- * @author takahashi.y
- *
+ * 文字コードを変換するクラス
  */
 public class CharaEncode {
 
-	public void encode(String filePath, String copyFilePath) {
-		File file = new File(filePath);
-		BufferedReader br = null;
+    /** 文字コード：UTF-8 */
+    private static String CONST_UTF8 = "UTF-8";
+    /** 文字コード：Shift-JIS */
+    private static String CONST_ShiftJIS = "Shift-JIS";
+    /** 文字コード：iso-8859-1 (変更無しのbyte型の配列として取得) */
+//    private static String CONST_ISO = "iso-8859-1";
+    /** 改行記号 */
+    private static String CONST_SEPARATOR = "line.separator";
+    /** エンコード１によってファイル生成した時に付与するラベル */
+    private static String LABEL_ENC1 = "ENC1_";
+    /** エンコード２によってファイル生成した時に付与するラベル */
+    private static String LABEL_ENC2 = "ENC2_";
 
-		try {
-			br = new BufferedReader(new FileReader(file));
-			String line;
-			StringBuffer lines = new StringBuffer();
+    /**
+     * 入力ファイルのテキストを文字コード変換をして、別ファイルを生成する。
+     *
+     * @param fileName 入力ファイルパス
+     * @param copyFileName 出力ファイルパス
+     */
+    public void encode(String dirPath, String fileName, String copyFileName) {
+        try {
+            // できなかったエンコード
+            encode1(dirPath + fileName, dirPath + LABEL_ENC1 + copyFileName);
 
-			// ファイル読み込み
-			while ((line = br.readLine()) != null) {
-				lines.append(line);
-				lines.append(System.getProperty("line.separator"));
-			}
+            // できたエンコード
+            encode2(dirPath + fileName, dirPath + LABEL_ENC2 + copyFileName);
 
-			String newLine = new String(lines.toString().getBytes("UTF8"),
-					"Shift-JIS");
+        } catch (IOException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
+    }
 
-			makeFile(copyFilePath, newLine);
+    /**
+     * InputStreamReaderとOutputStreamWriterを用いたエンコード
+     *
+     * @param filePath
+     * @param copyFilePath
+     * @throws IOException
+     */
+    private void encode2(String filePath, String copyFilePath)
+            throws IOException {
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				br.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+        InputStreamReader in;
 
-	private void makeFile(String file_name, String data) throws IOException {
+        in = new InputStreamReader(new FileInputStream(new File(filePath)),
+                CONST_UTF8);
 
-		File file = new File(file_name);
-		PrintWriter pw = new PrintWriter(new BufferedWriter(
-				new FileWriter(file)));
+        OutputStreamWriter out = new OutputStreamWriter(
+                new FileOutputStream(new File(copyFilePath)), CONST_ShiftJIS);
 
-		pw.print(data);
+        int c;
 
-		pw.close();
-	}
+        while ((c = in.read()) != -1) {
+            out.write(c);
+        }
+
+        in.close();
+        out.close();
+    }
+
+    /**
+     * FileReaderとFileWriterを用いたエンコード
+     *
+     * @param filePath
+     * @param copyFilePath
+     * @throws IOException
+     */
+    private void encode1(String filePath, String copyFilePath)
+            throws IOException {
+        File file = new File(filePath);
+        BufferedReader br = null;
+
+        // デフォルトの文字コードは「UTF-8」らしい。
+        // System.out.println(System.getProperty("file.encoding"));
+
+        // FileReaderはデフォルトの文字コードを使うようなので、
+        // このままでいけるはず。
+        br = new BufferedReader(new FileReader(file));
+        String line;
+        StringBuffer lines = new StringBuffer();
+
+        // ファイル読み込み
+        while ((line = br.readLine()) != null) {
+            lines.append(line);
+            lines.append(System.getProperty(CONST_SEPARATOR));
+        }
+
+        // 外部ファイルから読み込む場合にこれでできるかと思ったが、できない
+        String newLine = new String(lines.toString().getBytes(),
+                CONST_ShiftJIS);
+
+        makeFile(copyFilePath, newLine);
+
+        br.close();
+    }
+
+    /**
+     * ファイルを作成する
+     *
+     * @param file_name
+     * @param data
+     * @throws IOException
+     */
+    private void makeFile(String file_name, String data) throws IOException {
+
+        File file = new File(file_name);
+        PrintWriter pw = new PrintWriter(new BufferedWriter(
+                new FileWriter(file)));
+
+        pw.print(data);
+
+        pw.close();
+    }
 }

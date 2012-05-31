@@ -1,7 +1,6 @@
 package labo.isoroot.kwkb.task002.q2;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -45,7 +44,7 @@ public class Main {
         keiko.setSex("女");
         takahashi.addMember(keiko);
 
-        ArrayList<Family> his = takahashi.getHistoryFamily();
+            takahashi.getHistoryFamily();
 
         System.out.println(takahashi.toString());
         System.out.println(takahashi.getHistory().toString());

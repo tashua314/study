@@ -1,7 +1,6 @@
 package labo.isoroot.kwkb.task002.q1;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 

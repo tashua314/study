@@ -9,7 +9,6 @@ public class Person {
     private String sex;
     private String age;
 
-
     /**
      * @return name
      */
@@ -18,16 +17,13 @@ public class Person {
         return name;
     }
 
-
     /**
-     * @param name
-     *            セットする name
+     * @param name セットする name
      */
     public void setName(String name) {
 
         this.name = name;
     }
-
 
     /**
      * @return sex
@@ -37,16 +33,13 @@ public class Person {
         return sex;
     }
 
-
     /**
-     * @param sex
-     *            セットする sex
+     * @param sex セットする sex
      */
     public void setSex(String sex) {
 
         this.sex = sex;
     }
-
 
     /**
      * @return age
@@ -56,10 +49,8 @@ public class Person {
         return age;
     }
 
-
     /**
-     * @param age
-     *            セットする age
+     * @param age セットする age
      */
     public void setAge(int age) {
 

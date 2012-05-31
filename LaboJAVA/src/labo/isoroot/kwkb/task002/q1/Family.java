@@ -10,15 +10,13 @@ public class Family {
     private String address;
     private String tel;
     private Person Householder;
-    private List<Person> members;
-
+    private final List<Person> members;
 
     public Family(List<Person> members) {
 
         super();
         this.members = members;
     }
-
 
     /**
      * Familyクラスを文字列に変換して返却する。
@@ -55,7 +53,6 @@ public class Family {
         return builder.toString();
     }
 
-
     /**
      * @return address
      */
@@ -64,16 +61,13 @@ public class Family {
         return address;
     }
 
-
     /**
-     * @param address
-     *            セットする address
+     * @param address セットする address
      */
     public void setAddress(String address) {
 
         this.address = address;
     }
-
 
     /**
      * @return tel
@@ -83,16 +77,13 @@ public class Family {
         return tel;
     }
 
-
     /**
-     * @param tel
-     *            セットする tel
+     * @param tel セットする tel
      */
     public void setTel(String tel) {
 
         this.tel = tel;
     }
-
 
     /**
      * @return householder
@@ -102,16 +93,13 @@ public class Family {
         return Householder;
     }
 
-
     /**
-     * @param householder
-     *            セットする householder
+     * @param householder セットする householder
      */
     public void setHouseholder(Person householder) {
 
         Householder = householder;
     }
-
 
     /**
      * @return members

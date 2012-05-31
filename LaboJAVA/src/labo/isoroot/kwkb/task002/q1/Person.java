@@ -5,14 +5,17 @@ package labo.isoroot.kwkb.task002.q1;
  */
 public class Person {
 
+    /** 名前. */
     private String name;
+    /** 性別 */
     private String sex;
+    /** 年齢 */
     private String age;
 
     /**
      * @return name
      */
-    public String getName() {
+    public final String getName() {
 
         return name;
     }
@@ -20,7 +23,7 @@ public class Person {
     /**
      * @param name セットする name
      */
-    public void setName(String name) {
+    public final void setName(String name) {
 
         this.name = name;
     }
@@ -28,7 +31,7 @@ public class Person {
     /**
      * @return sex
      */
-    public String getSex() {
+    public final String getSex() {
 
         return sex;
     }
@@ -36,7 +39,7 @@ public class Person {
     /**
      * @param sex セットする sex
      */
-    public void setSex(String sex) {
+    public final void setSex(String sex) {
 
         this.sex = sex;
     }
@@ -44,7 +47,7 @@ public class Person {
     /**
      * @return age
      */
-    public String getAge() {
+    public final String getAge() {
 
         return age;
     }
@@ -52,7 +55,7 @@ public class Person {
     /**
      * @param age セットする age
      */
-    public void setAge(int age) {
+    public final void setAge(int age) {
 
         this.age = String.valueOf(age);
     }

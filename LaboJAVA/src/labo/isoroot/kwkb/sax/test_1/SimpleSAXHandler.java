@@ -4,20 +4,28 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * サックスクラス
+ * @author takahashi.y
+ *
+ */
 public class SimpleSAXHandler extends DefaultHandler {
 
+    @Override
     public void startDocument() throws SAXException {
 
         System.out.println("Documentの開始です。");
 
     }
 
+    @Override
     public void endDocument() throws SAXException {
 
         System.out.println("Documentの終了です。");
 
     }
 
+    @Override
     public void startElement(String uri, String name, String qualifiedName,
             Attributes attributes) {
         System.out.println("要素名 " + name + " の開始です。");
@@ -38,7 +46,8 @@ public class SimpleSAXHandler extends DefaultHandler {
         }
     }
 
-    public void endElement(String uri, String name, String qualifiedName) {
+    @Override
+    public final void endElement(String uri, String name, String qualifiedName) {
         System.out.println("要素名 " + name + " の終了です。");
     }
 
@@ -46,9 +55,7 @@ public class SimpleSAXHandler extends DefaultHandler {
      * 要素の内容を取得します
      */
 
+    @Override
     public void characters(char[] ch, int start, int length) {
-
-        System.out.println(new String(ch, start, length));
-
     }
 }

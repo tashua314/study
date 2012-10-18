@@ -7,11 +7,19 @@ import java.util.List;
  */
 public class Family {
 
+    /** 住所 */
     private String address;
+    /** 電話番号 */
     private String tel;
-    private Person Householder;
+    /** 世帯主 */
+    private Person householder;
+    /** 構成メンバ */
     private final List<Person> members;
 
+    /**
+     * Familyクラスのコンストラクタ<br />
+     * @param members 構成メンバ
+     */
     public Family(List<Person> members) {
 
         super();
@@ -20,6 +28,7 @@ public class Family {
 
     /**
      * Familyクラスを文字列に変換して返却する。
+     * @return Family情報の文字列
      */
     @Override
     public String toString() {
@@ -30,14 +39,14 @@ public class Family {
         builder.append(address);
         builder.append(",\n  tel=");
         builder.append(tel);
-        builder.append(",\n  Householder=");
-        builder.append(Householder.getName());
-        builder.append("\n    age=" + Householder.getAge());
-        builder.append("\n    sex=" + Householder.getSex());
+        builder.append(",\n  householder=");
+        builder.append(householder.getName());
+        builder.append("\n    age=" + householder.getAge());
+        builder.append("\n    sex=" + householder.getSex());
 
         // 構成メンバに世帯主が含まれていた場合の処理
         for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getName().equals(Householder.getName())) {
+            if (members.get(i).getName().equals(householder.getName())) {
                 members.remove(i);
             }
         }
@@ -56,7 +65,7 @@ public class Family {
     /**
      * @return address
      */
-    public String getAddress() {
+    public final String getAddress() {
 
         return address;
     }
@@ -64,7 +73,7 @@ public class Family {
     /**
      * @param address セットする address
      */
-    public void setAddress(String address) {
+    public final void setAddress(String address) {
 
         this.address = address;
     }
@@ -72,7 +81,7 @@ public class Family {
     /**
      * @return tel
      */
-    public String getTel() {
+    public final String getTel() {
 
         return tel;
     }
@@ -90,7 +99,7 @@ public class Family {
      */
     public Person getHouseholder() {
 
-        return Householder;
+        return householder;
     }
 
     /**
@@ -98,7 +107,7 @@ public class Family {
      */
     public void setHouseholder(Person householder) {
 
-        Householder = householder;
+        this.householder = householder;
     }
 
     /**

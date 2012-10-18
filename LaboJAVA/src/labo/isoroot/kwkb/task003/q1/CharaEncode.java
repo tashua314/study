@@ -18,30 +18,32 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
 /**
- * 文字コードを変換するクラス
+ * 文字コードを変換するクラス.
  */
 public class CharaEncode {
 
-    /** 文字コード：UTF-8 */
-    private static String CONST_UTF8 = "UTF-8";
-    /** 文字コード：Shift-JIS */
-    private static String CONST_ShiftJIS = "Shift-JIS";
+    /** 文字コード：UTF-8. */
+    private static final String CONST_UTF8 = "UTF-8";
+    /** 文字コード：Shift-JIS. */
+    private static final String CONST_SJIS = "Shift-JIS";
     /** 文字コード：iso-8859-1 (変更無しのbyte型の配列として取得) */
-//    private static String CONST_ISO = "iso-8859-1";
+    // private static final String CONST_ISO = "iso-8859-1";
     /** 改行記号 */
-    private static String CONST_SEPARATOR = "line.separator";
+    private static final String CONST_SEPARATOR = "line.separator";
     /** エンコード１によってファイル生成した時に付与するラベル */
-    private static String LABEL_ENC1 = "ENC1_";
+    private static final String LABEL_ENC1 = "ENC1_";
     /** エンコード２によってファイル生成した時に付与するラベル */
-    private static String LABEL_ENC2 = "ENC2_";
+    private static final String LABEL_ENC2 = "ENC2_";
 
     /**
      * 入力ファイルのテキストを文字コード変換をして、別ファイルを生成する。
      *
-     * @param fileName 入力ファイルパス
-     * @param copyFileName 出力ファイルパス
+     * @param dirPath 入出力ファイルがあるディレクトリパス
+     * @param fileName 入力ファイル名
+     * @param copyFileName 出力ファイル名
      */
-    public void encode(String dirPath, String fileName, String copyFileName) {
+    public final void encode(String dirPath, String fileName,
+            String copyFileName) {
         try {
             // できなかったエンコード
             encode1(dirPath + fileName, dirPath + LABEL_ENC1 + copyFileName);
@@ -58,9 +60,9 @@ public class CharaEncode {
     /**
      * InputStreamReaderとOutputStreamWriterを用いたエンコード
      *
-     * @param filePath
-     * @param copyFilePath
-     * @throws IOException
+     * @param filePath 入力ファイルパス
+     * @param copyFilePath 出力ファイルパス
+     * @throws IOException ファイルが無かった場合
      */
     private void encode2(String filePath, String copyFilePath)
             throws IOException {
@@ -70,8 +72,9 @@ public class CharaEncode {
         in = new InputStreamReader(new FileInputStream(new File(filePath)),
                 CONST_UTF8);
 
-        OutputStreamWriter out = new OutputStreamWriter(
-                new FileOutputStream(new File(copyFilePath)), CONST_ShiftJIS);
+        OutputStreamWriter out;
+        out = new OutputStreamWriter(new FileOutputStream(
+                new File(copyFilePath)), CONST_SJIS);
 
         int c;
 
@@ -86,9 +89,9 @@ public class CharaEncode {
     /**
      * FileReaderとFileWriterを用いたエンコード
      *
-     * @param filePath
-     * @param copyFilePath
-     * @throws IOException
+     * @param filePath 入力ファイルパス
+     * @param copyFilePath 出力ファイルパス
+     * @throws IOException ファイルが無かった場合
      */
     private void encode1(String filePath, String copyFilePath)
             throws IOException {
@@ -111,8 +114,7 @@ public class CharaEncode {
         }
 
         // 外部ファイルから読み込む場合にこれでできるかと思ったが、できない
-        String newLine = new String(lines.toString().getBytes(),
-                CONST_ShiftJIS);
+        String newLine = new String(lines.toString().getBytes(), CONST_SJIS);
 
         makeFile(copyFilePath, newLine);
 
@@ -122,13 +124,13 @@ public class CharaEncode {
     /**
      * ファイルを作成する
      *
-     * @param file_name
-     * @param data
-     * @throws IOException
+     * @param fileName 作成するファイル名
+     * @param data 出力データ
+     * @throws IOException ファイルが作成できなかった場合
      */
-    private void makeFile(String file_name, String data) throws IOException {
+    private void makeFile(String fileName, String data) throws IOException {
 
-        File file = new File(file_name);
+        File file = new File(fileName);
         PrintWriter pw = new PrintWriter(new BufferedWriter(
                 new FileWriter(file)));
 

@@ -16,6 +16,10 @@ public class Access {
         this.key = "test";
     }
 
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     public List<String> getData() throws SQLException {
         List<String> list = new ArrayList<String>();
 

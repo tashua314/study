@@ -5,19 +5,17 @@ import java.util.List;
 
 public class Main {
 
-    private String key;
+    private Access access;
 
     public Main() {
-        this.key = "main";
+        this.access = new Access();
     }
 
-    public Main(String key) {
-        this.key = key;
+    public Main(Access access) {
+        this.access = access;
     }
 
     public int mainMethod() {
-
-        Access access = new Access(key);
 
         try {
             List<String> data = access.getData();

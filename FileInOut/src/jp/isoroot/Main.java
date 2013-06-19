@@ -11,21 +11,27 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+
 public class Main implements MainInterface {
 
-	private static final Logger logger = LogManager.getLogger(Main.class);
+	private static final Logger logger = LogManager.getLogger(Main.class.getName());
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		
-		logger.debug("aaaea");
+		logger.info("iinfo");
+		logger.warn("wwarn");
+		logger.debug("ddebug");
+		logger.fatal("fattal");
+		logger.error("EERREERR");
+		logger.trace("trace");
 		
 		// 読み込みファイル
 		String inFile = args[0];
@@ -37,12 +43,12 @@ public class Main implements MainInterface {
 		try {
 			// データを読み込む
 			list = readFileData(inFile);
-			sysoList(list);
+//			sysoList(list);
 
 			// データ加工を行う
 			workData(list);
 			
-			sysoList(list);
+//			sysoList(list);
 			
 			// ファイル書き込み
 			writeFile(outFile, list);

@@ -15,24 +15,16 @@ import java.util.Collections;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
-
 public class Main implements MainInterface {
 
-	private static final Logger logger = LogManager.getLogger(Main.class.getName());
+	private static final Logger logger = LogManager.getLogger(Main.class
+			.getName());
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-		logger.info("iinfo");
-		logger.warn("wwarn");
-		logger.debug("ddebug");
-		logger.fatal("fattal");
-		logger.error("EERREERR");
-		logger.trace("trace");
-		
+
 		// 読み込みファイル
 		String inFile = args[0];
 		// 書き込みファイル
@@ -43,34 +35,41 @@ public class Main implements MainInterface {
 		try {
 			// データを読み込む
 			list = readFileData(inFile);
-//			sysoList(list);
+			
+			logger.debug("読み込みファイルの行数：" + list.size());
 
 			// データ加工を行う
 			workData(list);
-			
-//			sysoList(list);
-			
+
+			logger.debug("書き込みファイルの行数：" + list.size());
+
 			// ファイル書き込み
 			writeFile(outFile, list);
-
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			
+		} catch (FileNotFoundException e) {
+			
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+
+		
 	}
 
 	/**
+	 * データ処理
 	 * @param list
 	 */
 	private static void workData(ArrayList<String> list) {
 		// 昇順ソート
 		Collections.sort(list);
-		
+
 		// 重複項目削除
 		removeOverlapItem(list);
 	}
 
 	/**
 	 * ファイルからデータを読込む
+	 * 
 	 * @param inFile
 	 * @param list
 	 * @throws FileNotFoundException
@@ -79,7 +78,7 @@ public class Main implements MainInterface {
 	private static ArrayList<String> readFileData(String inFile)
 			throws FileNotFoundException, IOException {
 		ArrayList<String> list = new ArrayList<String>();
-		
+
 		BufferedReader br = new BufferedReader(new InputStreamReader(
 				new FileInputStream(inFile)));
 		String line = null;
@@ -88,26 +87,33 @@ public class Main implements MainInterface {
 		while ((line = br.readLine()) != null) {
 			list.add(line);
 		}
-		br.close();
 		
+		br.close();
+
 		return list;
 	}
 
 	/**
 	 * 重複項目を削除する
+	 * 
 	 * @param list
 	 */
 	private static void removeOverlapItem(ArrayList<String> list) {
+		// 削除行数
+		int removeCount = 0;
 		// 重複項目を削除
 		for (int i = 0; i + 1 < list.size(); i++) {
-			if (list.get(i).equals(list.get(i+1))) {
+			if (list.get(i).equals(list.get(i + 1))) {
 				list.remove(i);
+				removeCount++;
 			}
 		}
+		logger.debug("削除行数：" + removeCount);
 	}
 
 	/**
 	 * コンソール確認用
+	 * 
 	 * @param list
 	 */
 	private static void sysoList(ArrayList<String> list) {
@@ -118,6 +124,7 @@ public class Main implements MainInterface {
 
 	/**
 	 * ファイル書き込み
+	 * 
 	 * @param outFile
 	 * @param list
 	 * @return

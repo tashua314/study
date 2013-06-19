@@ -4,15 +4,15 @@
     <Console name="Console" target="SYSTEM_OUT">
       <PatternLayout pattern="%-5level [%t]: %msg%n" />
     </Console>
-    <RollingFile name="RollingFile" fileName="test.log">
+    <File name="File" fileName="logs/test.log">
       <PatternLayout pattern="%-5level [%t]: %msg%n" />
-    </RollingFile>
+    </File>
   </appenders>
   
   <loggers>
     <root level="ALL">
       <appender-ref ref="Console" />
-      <appender-ref ref="RollingFile" />
+      <appender-ref ref="File" />
     </root>
   </loggers>
 </configuration>

@@ -57,7 +57,7 @@ public class Run {
 		ArrayList<String> list = new ArrayList<String>();
 
 		// データを読み込む
-		list = readFileData(this.inFile);
+		list = Util.readFileData(this.inFile);
 
 		logger.debug("読み込みファイルの行数：" + list.size());
 
@@ -67,7 +67,8 @@ public class Run {
 		logger.debug("書き込みファイルの行数：" + list.size());
 
 		// ファイル書き込み
-		writeFile(outFile, list);
+		
+		Util.writeFile(outFile, list);
 
 		return true;
 
@@ -124,31 +125,10 @@ public class Run {
 			if (list.get(i).equals(list.get(i + 1))) {
 				list.remove(i);
 				removeCount++;
+				i--;
+			} else {
 			}
 		}
 		logger.debug("削除行数：" + removeCount);
-	}
-
-	/**
-	 * ファイル書き込み
-	 * 
-	 * @param outFile
-	 * @param list
-	 * @return
-	 * @throws IOException
-	 */
-	private static PrintWriter writeFile(String outFile, ArrayList<String> list)
-			throws IOException {
-		// ファイル書き込み
-		File file = new File(outFile);
-		PrintWriter pw = new PrintWriter(new BufferedWriter(
-				new FileWriter(file)));
-		for (int i = 0; i < list.size(); i++) {
-			pw.println(list.get(i));
-		}
-		pw.close();
-
-		return pw;
-
 	}
 }

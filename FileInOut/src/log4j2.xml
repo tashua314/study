@@ -4,7 +4,7 @@
     <Console name="Console" target="SYSTEM_OUT">
       <PatternLayout pattern="%-5level [%t]: %msg%n" />
     </Console>
-    <File name="File" fileName="logs/test.log">
+    <File name="File" fileName="test.log">
       <PatternLayout pattern="%-5level [%t]: %msg%n" />
     </File>
   </appenders>

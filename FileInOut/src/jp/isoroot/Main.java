@@ -6,7 +6,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Main implements MainInterface {
+public class Main {
 
 	private static final Logger logger = LogManager.getLogger(Main.class
 			.getName());
@@ -37,8 +37,10 @@ public class Main implements MainInterface {
 
 		long end = System.currentTimeMillis();
 		logger.debug("実行時間：" + (end - start) + "msec");
-		if (result) logger.info("処理成功");
-		else logger.info("処理失敗");
+		if (result)
+			logger.info("処理成功");
+		else
+			logger.info("処理失敗");
 
 	}
 }

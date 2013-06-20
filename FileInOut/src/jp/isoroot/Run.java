@@ -130,17 +130,6 @@ public class Run {
 	}
 
 	/**
-	 * コンソール確認用
-	 * 
-	 * @param list
-	 */
-	private static void sysoList(ArrayList<String> list) {
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i));
-		}
-	}
-
-	/**
 	 * ファイル書き込み
 	 * 
 	 * @param outFile

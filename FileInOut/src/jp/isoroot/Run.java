@@ -47,9 +47,9 @@ public class Run {
 	/**
 	 * 処理実行
 	 * 
-	 * @param args
-	 * @throws IOException
+	 * @return 処理正常終了：true、処理異常終了：false
 	 * @throws FileNotFoundException
+	 * @throws IOException
 	 */
 	public boolean run() throws FileNotFoundException, IOException {
 
@@ -67,7 +67,7 @@ public class Run {
 		logger.debug("書き込みファイルの行数：" + list.size());
 
 		// ファイル書き込み
-		
+
 		Util.writeFile(outFile, list);
 
 		return true;

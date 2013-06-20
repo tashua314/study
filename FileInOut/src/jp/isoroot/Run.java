@@ -67,11 +67,9 @@ public class Run {
 		logger.debug("書き込みファイルの行数：" + list.size());
 
 		// ファイル書き込み
-
 		Util.writeFile(outFile, list);
 
 		return true;
-
 	}
 
 	/**
@@ -85,31 +83,6 @@ public class Run {
 
 		// 重複項目削除
 		removeOverlapItem(list);
-	}
-
-	/**
-	 * ファイルからデータを読込む
-	 * 
-	 * @param inFile
-	 * @param list
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 */
-	private static ArrayList<String> readFileData(String inFile)
-			throws FileNotFoundException, IOException {
-		ArrayList<String> list = new ArrayList<String>();
-		BufferedReader br = new BufferedReader(new InputStreamReader(
-				new FileInputStream(inFile)));
-		String line = null;
-
-		// ファイルデータセット
-		while ((line = br.readLine()) != null) {
-			list.add(line);
-		}
-
-		br.close();
-
-		return list;
 	}
 
 	/**

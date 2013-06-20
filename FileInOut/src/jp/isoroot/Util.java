@@ -11,8 +11,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+/***
+ * Util系
+ * 
+ * @author takahashi
+ * 
+ */
 public class Util {
-	
+
 	/**
 	 * ファイルからデータを読込む
 	 * 
@@ -59,12 +65,12 @@ public class Util {
 
 		return true;
 	}
-	
+
 	// ファイル削除
 	public static boolean deleteFile(String targetFile) {
 		File target = new File(targetFile);
 		target.delete();
-		
+
 		return true;
 	}
 
